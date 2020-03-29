@@ -13,5 +13,14 @@ namespace Heber_Camping.Controllers
             return View();
         }
 
+        public ActionResult About()
+        {
+            return View();
+        }
+        public ActionResult Impressum()
+        {
+            return View();
+        }
+
     }
 }
