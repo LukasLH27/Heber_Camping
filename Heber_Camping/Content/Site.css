@@ -3,11 +3,10 @@
     height: 152px;
     border-bottom: 1px solid #b9aeae;
     background-color:brown;
-   color:cornsilk;
+    color:cornsilk;
 }
 header img{
     height:100px;
-
 }
 
 nav {
@@ -16,15 +15,17 @@ nav {
     float: left;
     min-height: 500px;
     padding: 20px 5px 10px 10px;
+    background-color:brown;
 }
 
 content {
-    min-width: 500px;
-    width: 65%;
+    min-width: 1073px;
+    width: 80%;
     float: left;
     min-height: 500px;
     border-left: 1px solid #b9aeae;
     padding: 10px;
+    background-color:darkgrey;
 }
 
 footer {
@@ -32,6 +33,7 @@ footer {
     border-top: 1px solid #b9aeae;
     text-align: right;
     padding: 5px 10px;
+    background-color:cornflowerblue;
 }
 
 ul {
@@ -47,10 +49,14 @@ ul {
     font-size: 1.0em;
     padding-left: 15px;
 }
-
+a {
+    color: yellow;
+}
 a:hover {
-    text-decoration: none;
+    text-decoration:none;
     font-weight: bold;
+    color:white;
+
 }
 
 

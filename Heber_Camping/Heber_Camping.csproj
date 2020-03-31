@@ -171,7 +171,7 @@
     <Content Include="Views\Campingplatz\Infos.cshtml" />
     <Content Include="Views\Campingplatz\Preise.cshtml" />
     <Content Include="Views\Campingplatz\Bilder.cshtml" />
-    <Content Include="Views\Campingplatz\Campingplatz.cshtml" />
+    <Content Include="Views\Campingplatz\Standard.cshtml" />
     <Content Include="Views\Reservierung\Reservierung.cshtml" />
   </ItemGroup>
   <ItemGroup>
