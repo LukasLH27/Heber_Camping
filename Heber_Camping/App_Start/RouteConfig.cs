@@ -16,7 +16,7 @@ namespace Heber_Camping
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "about", id = UrlParameter.Optional }
+                defaults: new { controller = "Campingplatz", action = "infos", id = UrlParameter.Optional }
             );
         }
     }
