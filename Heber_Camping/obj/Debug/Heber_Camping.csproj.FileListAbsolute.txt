@@ -50,6 +50,7 @@ C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\roslyn\VBCSCompiler.
 C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\Antlr3.Runtime.dll
 C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\MySql.Data.dll
 C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\Newtonsoft.Json.dll
 C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\System.Web.Helpers.dll
 C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\System.Web.Mvc.dll
@@ -59,6 +60,10 @@ C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\System.Web.WebPages.
 C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\System.Web.WebPages.dll
 C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\System.Web.WebPages.Razor.dll
 C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\WebGrease.dll
+C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\Google.Protobuf.dll
+C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\Renci.SshNet.dll
+C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\BouncyCastle.Crypto.dll
+C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\MySql.Data.xml
 C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\System.Web.Helpers.xml
 C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\System.Web.Mvc.xml
 C:\Users\forme\source\repos\Heber_Camping\Heber_Camping\bin\System.Web.Optimization.xml

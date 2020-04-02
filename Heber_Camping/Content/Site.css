@@ -59,5 +59,33 @@ a:hover {
 
 }
 
+table {
+    margin: 20px auto;
+}
+
+thead {
+    text-align:center;
+    background-color:#333333;
+    color: white;
+    font-size: 2em;
+}
+
+    thead tr:first-child {
+        border-bottom: 5px inset white;
+    }
+
+tfoot {
+    text-align: left;
+    font-size: 1em;
+}
+
+td {
+    padding: 5px;
+}
+
+tbody tr {
+    border-bottom: 1px ridge black;
+}
+
 
 

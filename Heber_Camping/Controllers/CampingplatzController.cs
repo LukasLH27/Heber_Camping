@@ -8,7 +8,7 @@ namespace Heber_Camping.Controllers
 {
     public class CampingplatzController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Standard()
         {
             return View();
         }

@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=8.0.17.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -126,6 +127,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\db\IRepositoryDB.cs" />
+    <Compile Include="Models\db\RepositoryDB.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +143,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\campingplatz.jpg" />
+    <Content Include="Models\db\db_script\dbfile.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -167,16 +173,17 @@
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Impressum.cshtml" />
-    <Content Include="Views\Reservierung\Anfrage.cshtml" />
     <Content Include="Views\Campingplatz\Infos.cshtml" />
     <Content Include="Views\Campingplatz\Preise.cshtml" />
     <Content Include="Views\Campingplatz\Bilder.cshtml" />
     <Content Include="Views\Campingplatz\Standard.cshtml" />
     <Content Include="Views\Reservierung\Reservierung.cshtml" />
+    <Content Include="Views\Reservierung\Anfrage.cshtml" />
+    <Content Include="Views\Shared\Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
