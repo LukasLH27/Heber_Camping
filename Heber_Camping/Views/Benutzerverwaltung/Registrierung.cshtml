@@ -1,0 +1,68 @@
+﻿@model Heber_Camping.Models.Benutzer
+
+@{
+    ViewBag.Title = "Registrierung";
+}
+
+<h2>Registrierung</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <!-- @Html.ValidationSummary() -->
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <td colspan="2">Registrierung</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.LabelFor(r => r.Firstname, "Vorname:* ")</td>
+                <td>
+                    @Html.TextBoxFor(r => r.Firstname, new { required = "required" }) <br />
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(r => r.Lastname, "Nachname:* ")</td>
+                <td>
+                    @Html.TextBoxFor(r => r.Lastname, new { required = "required" }) <br />
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(r => r.Email, "E-Mail*: ")</td>
+                <td>@Html.TextBoxFor(r => r.Email, new { required = "required" })</td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(r => r.Password, "Passwort*: ")</td>
+                <td>@Html.TextBoxFor(r => r.Password, new { type = "password" })</td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(r => r.PasswordConfirm, "Passwort wiederholen*: ")</td>
+                <td>@Html.TextBoxFor(r => r.PasswordConfirm, new { type = "password" })</td>
+            </tr>
+
+
+
+
+            <tr>
+                <td colspan="2" style=" text-align:center">
+                    <input type="submit" value="registrieren" id="btnSubmit" />
+                    <input type="reset" value="Daten zurücksetzen" id="btnReset" />
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">* sind Pflichtfelder</td>
+            </tr>
+        </tfoot>
+
+
+    </table>
+}
+

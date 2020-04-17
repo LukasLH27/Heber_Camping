@@ -1,0 +1,44 @@
+﻿@model Heber_Camping.Models.BenutzerLogin
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <!-- @Html.ValidationSummary() -->
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <td colspan="2">Login</td>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>@Html.LabelFor(r => r.Email, "E-Mail: ")</td>
+                <td>@Html.TextBoxFor(r => r.Email, new { required = "required" })</td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(r => r.Password, "Passwort: ")</td>
+                <td>@Html.TextBoxFor(r => r.Password, new { type = "password" })</td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2" style=" text-align:center">
+                    <input type="submit" value="einloggen" id="btnSubmit" />
+                    <input type="reset" value="Daten zurücksetzen" id="btnReset" />
+                </td>
+            </tr>
+        </tbody>
+
+
+    </table>
+}
+

@@ -1,4 +1,8 @@
 ﻿<ul>
+    <li class="nav_level1">@Html.ActionLink("Login", "login", "benutzerverwaltung")</li>
+    <li class="nav_level1">@Html.ActionLink("Registrierung", "registrierung", "benutzerverwaltung")</li>
+
+
     <li class="nav_level1">@Html.ActionLink("Home", "index", "home")</li>
     <li class="nav_level2">@Html.ActionLink("Über Uns", "about", "home")</li>
     <li class="nav_level2">@Html.ActionLink("Impressum", "impressum", "home")</li>
@@ -10,5 +14,10 @@
 
     <li class="nav_level1">@Html.ActionLink("Reservierung", "reservierung", "reservierung")</li>
     <li class="nav_level2">@Html.ActionLink("Anfrage", "anfrage", "reservierung")</li>
+
+    <li class="nav_level1">@Html.ActionLink("Admin", "reservierung", "reservierung")</li>
+    <li class="nav_level2">@Html.ActionLink("Reservierungsanfragen", "reservierung", "reservierung")</li>
+    <li class="nav_level2">@Html.ActionLink("registrierte Benutzer", "reservierung", "reservierung")</li>
+
 
 </ul>
