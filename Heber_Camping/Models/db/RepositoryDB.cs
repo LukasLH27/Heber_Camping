@@ -92,38 +92,33 @@ namespace Heber_Camping.Models.db
 
             using (DbDataReader reader = cmdGetAll.ExecuteReader())
             {
-                if (!reader.HasRows)
+
+                while (reader.Read())
                 {
-                    return null;
+                    requests.Add(new Request
+                    {
+                        Id = Convert.ToInt32(reader["id"]),
+                        Firstname = Convert.ToString(reader["firstname"]),
+                        Lastname = Convert.ToString(reader["lastname"]),
+                        Email = Convert.ToString(reader["email"]),
+                        Telnum = Convert.ToString(reader["telnum"]),
+                        DateArrival = Convert.ToDateTime(reader["dateArrival"]),
+                        DateDeparture = Convert.ToDateTime(reader["dateDeparture"]),
+                        CountOfPeople = Convert.ToInt32(reader["countOfPeople"]),
+                        Comments = Convert.ToString(reader["comments"]),
+                        RequestEdited = Convert.ToBoolean(reader["requestEdited"])
+                    });
                 }
-
-                reader.Read();
-                requests.Add(new Request
-                {
-                    Id = Convert.ToInt32(reader["id"]),
-                    Firstname = Convert.ToString(reader["firstname"]),
-                    Lastname = Convert.ToString(reader["lastname"]),
-                    Email = Convert.ToString(reader["email"]),
-                    Telnum = Convert.ToString(reader["telnum"]),
-                    DateArrival = Convert.ToDateTime(reader["dateArrival"]),
-                    DateDeparture = Convert.ToDateTime(reader["dateDeparture"]),
-                    CountOfPeople = Convert.ToInt32(reader["countOfPeople"]),
-                    Comments = Convert.ToString(reader["comments"]),
-                    RequestEdited = Convert.ToBoolean(reader["requestEdited"])
-                });
-
             }
-
-            
 
             return requests;
 
         }
 
-        public bool Edit(int id)
+        public bool Edit(int id, bool neuerStatus)
         {
             DbCommand cmdSetEdit = _connection.CreateCommand();
-            cmdSetEdit.CommandText = "UPDATE requests set RequestEdited = @Edit where id = @id ";
+            cmdSetEdit.CommandText = "UPDATE requests set RequestEdited = @neuerStatus where id = @id ";
 
             DbParameter paramId = cmdSetEdit.CreateParameter();
             paramId.ParameterName = "id";
@@ -131,8 +126,8 @@ namespace Heber_Camping.Models.db
             paramId.DbType = DbType.Int32;
 
             DbParameter paramEdit = cmdSetEdit.CreateParameter();
-            paramEdit.ParameterName = "Edit";
-            paramEdit.Value = true;
+            paramEdit.ParameterName = "neuerStatus";
+            paramEdit.Value = neuerStatus;
             paramEdit.DbType = DbType.Boolean;
 
             cmdSetEdit.Parameters.Add(paramId);

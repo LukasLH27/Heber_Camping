@@ -13,7 +13,7 @@ namespace Heber_Camping.Models
 
         List<Request> GetRequests();
 
-        bool Edit(int id);
+        bool Edit(int id, bool status);
 
         bool Delete(int id);
 

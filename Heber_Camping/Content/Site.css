@@ -61,13 +61,15 @@ a:hover {
 
 table {
     margin: 20px auto;
+    width:auto;
+    height:auto;
 }
 
 thead {
     text-align:center;
     background-color:#333333;
     color: white;
-    font-size: 2em;
+    font-size: 1em;
 }
 
     thead tr:first-child {

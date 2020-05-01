@@ -123,18 +123,20 @@ namespace Heber_Camping.Controllers
         }
         public ActionResult ChangeStatus(int id)
         {
-            repDB = new RepositoryDB();
-            repDB.Open();
-            if (repDB.Edit(id))
+            if (Session["loggedIn"] == null)
             {
-                repDB.Close();
-                return RedirectToAction("Reservierungen");
+                return RedirectToAction("Login", "Benutzerverwaltung");
             }
-            else
+
+            if (Convert.ToBoolean(Session["AdminSession"]))
             {
+                repDB = new RepositoryDB();
+                repDB.Open();
+                repDB.Edit(id, true);
                 repDB.Close();
-                return View("Message", new Message("Anfrage wurde nicht bearbeitet", "Sie haben die Anfrage nicht bearbeitet"));
             }
+
+            return RedirectToAction("Reservierungen", "Benutzerverwaltung");
         }
 
         public ActionResult Delete(int id)
