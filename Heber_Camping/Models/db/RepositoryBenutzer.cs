@@ -7,32 +7,11 @@ using System.Data;
 using System.Data.Common;
 
 
+
 namespace Heber_Camping.Models.db
 {
-    public class RepositoryBenutzer : IRepositoryBenutzer
+    public class RepositoryBenutzer : DbBase, IRepositoryBenutzer
     {
-        private string _connectionString = "Server=localhost;Database=db_auftrag;Uid=root;Pwd=formel1;";
-        private MySqlConnection _connection;
-
-        public void Open()
-        {
-            if (this._connection == null)
-            {
-                this._connection = new MySqlConnection(this._connectionString);
-            }
-            if (this._connection.State != ConnectionState.Open)
-            {
-                this._connection.Open();
-            }
-        }
-
-        public void Close()
-        {
-            if ((this._connection != null) && (this._connection.State != ConnectionState.Closed))
-            {
-                this._connection.Close();
-            }
-        }
 
         public bool Insert(Benutzer benutzer)
         {

@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Heber_Camping.Models.db
 {
-    interface IRepositoryBenutzer
+    interface IRepositoryBenutzer : IDbBase
     {
-        void Open();
-        void Close();
-
         bool Insert(Benutzer user);
         bool Delete(int id);
         bool UpdateUserData(int id, Benutzer neueBenutzerDaten);

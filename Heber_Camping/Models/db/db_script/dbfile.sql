@@ -11,6 +11,7 @@ create table requests(
     dateDeparture date not null,
     CountOfPeople int not null,
 	comments varchar(1000),
+    RequestEdited bool not null,
     
 	constraint id_PK primary key(id) 
       
@@ -27,8 +28,11 @@ create table users(
     constraint id_PK primary key(id)
 )engine=InnoDB;
 
-INSERT INTO requests VALUES(null,"Lukas","Heber","luheber@tsn.at","43664-3214322","2021-4-1","2021-4-5",2,"Testeintrag blablabla");
-INSERT INTO users VALUES(null,"Lukas","Heber","luheber@tsn.at",1,sha2("passwort",256));
+INSERT INTO requests VALUES(null,"Lukas","Heber","luheber@tsn.at","43664-3214322","2021-4-1","2021-4-5",2,"Testeintrag blablabla",false);
+INSERT INTO requests VALUES(null,"Lukas","Heber","luheber@tsn.at","43664-3214322","2021-4-1","2021-4-5",2,"Testeintrag blablabla",true);
+
+INSERT INTO users VALUES (null,"Lukas","Heber","admin@tsn.at",1,sha2("Hallo1234", 256));
+INSERT INTO users VALUES (null,"Lukas","Heber","luheber@tsn.at",0,sha2("Hallo1234", 256));
 
 select * from requests;
 

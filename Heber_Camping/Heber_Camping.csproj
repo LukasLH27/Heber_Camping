@@ -130,6 +130,8 @@
     </Compile>
     <Compile Include="Models\Benutzer.cs" />
     <Compile Include="Models\BenutzerLogin.cs" />
+    <Compile Include="Models\db\DbBase.cs" />
+    <Compile Include="Models\db\IDbBase.cs" />
     <Compile Include="Models\db\IRepositoryBenutzer.cs" />
     <Compile Include="Models\db\IRepositoryDB.cs" />
     <Compile Include="Models\db\RepositoryBenutzer.cs" />

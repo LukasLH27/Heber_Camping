@@ -11,6 +11,7 @@ namespace Heber_Camping.Controllers
     public class BenutzerverwaltungController : Controller
     {
         private IRepositoryBenutzer rep;
+        private IRepositoryDB repDB;
 
         public ActionResult Admin()
         {
@@ -33,11 +34,22 @@ namespace Heber_Camping.Controllers
 
             if(benutzer == null)
             {
-                ModelState.AddModelError("Email", "Benutzername oder Passwort stimmen nicht!");
+                ModelState.AddModelError("Email", "EMail oder Passwort stimmen nicht!");
                 return View(benutzerLogin);
             }
             else
             {
+                Session["loggedIn"] = benutzer;
+                if(benutzer.Rolle == BenutzerRolle.admin)
+                {
+                    Session["AdminSession"] = true;
+                }
+                else
+                {
+                    Session["AdminSession"] = false;
+                }
+
+
                 return RedirectToAction("index", "home");
             }
 
@@ -85,12 +97,60 @@ namespace Heber_Camping.Controllers
 
         public ActionResult Reservierungen()
         {
-            return View();
+            List<Request> requests;
+            repDB = new RepositoryDB();
+            repDB.Open();
+            requests = repDB.GetRequests();
+            repDB.Close();
+
+            List<Request> newRequests = new List<Request>();
+
+            foreach(var r in requests)
+            {
+                if (!r.RequestEdited)
+                {
+                    newRequests.Add(r);
+                }
+            }
+
+
+            return View(newRequests);
         }
 
         public ActionResult RegistrierteBenutzer()
         {
             return View();
+        }
+        public ActionResult ChangeStatus(int id)
+        {
+            repDB = new RepositoryDB();
+            repDB.Open();
+            if (repDB.Edit(id))
+            {
+                repDB.Close();
+                return RedirectToAction("Reservierungen");
+            }
+            else
+            {
+                repDB.Close();
+                return View("Message", new Message("Anfrage wurde nicht bearbeitet", "Sie haben die Anfrage nicht bearbeitet"));
+            }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            repDB = new RepositoryDB();
+            repDB.Open();
+            if (repDB.Delete(id))
+            {
+                repDB.Close();
+                return RedirectToAction("Reservierungen");
+            }
+            else
+            {
+                repDB.Close();
+                return View("Message", new Message("Anfrage wurde nicht gelöscht", "Sie haben die Anfrage nicht gelöscht"));
+            }
         }
 
 

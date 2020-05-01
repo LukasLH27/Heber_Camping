@@ -1,1 +1,70 @@
-﻿
+﻿@model List<Heber_Camping.Models.Request>
+@using Heber_Camping.Models
+
+
+@if (Model != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Vorname</td>
+                <td>Nachname</td>
+                <td>Email</td>
+                <td>Telefonnummer</td>
+                <td>Ankunft</td>
+                <td>Abfahrt</td>
+                <td>Anzahl Personen</td>
+                <td>Kommentare</td>
+                <td>Bearbeitet</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Request r in Model)
+            {
+ 
+            <tr>
+                <td>@r.Id</td>
+                <td>@r.Firstname</td>
+                <td>@r.Lastname</td>
+                <td>@r.Email</td>
+                <td>@r.Telnum</td>
+                <td>@r.DateArrival</td>
+                <td>@r.DateDeparture</td>
+                <td>@r.CountOfPeople</td>
+                <td>@r.Comments</td>
+
+                @if (r.RequestEdited)
+                {
+                    <td>bearbeitet</td>
+                    <td></td>
+                }
+
+                else
+                {
+                    <td>nicht bearbeitet</td>
+                    <td>
+                        <form method="get" action="/Benutzerverwaltung/ChangeStatus/@r.Id">
+                            <input type="submit" value="Bearbeitet" />
+                        </form>
+                    </td>
+
+                    <td>
+                        <form method="get" action="/Benutzerverwaltung/Delete/@r.Id">
+                            <input type="submit" value="Löschen" />
+                        </form>
+                    </td>
+                }
+            </tr>
+            }
+        </tbody>
+
+    </table>
+}
+
+else
+{
+    <p>
+        Keine Anfragen gefunden!
+    </p>
+}

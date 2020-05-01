@@ -17,11 +17,13 @@ namespace Heber_Camping.Models
         public int? CountOfPeople { get; set; }
         public string Comments { get; set; }
 
-        public Request() : this(0, "", "","","",null,null,0,"") { }
+        public bool RequestEdited { get; set; }
+
+        public Request() : this(0, "", "","","",null,null,0,"",false) { }
 
         public Request(int id, string firstname, string lastname, string email,
             string telnum,DateTime? dateArrival,DateTime? dateDeparture, int countOfPeople,
-            string comments)
+            string comments,bool requestEdited)
         {
             this.Id = id;
             this.Firstname = firstname;
@@ -32,6 +34,7 @@ namespace Heber_Camping.Models
             this.DateDeparture = dateDeparture;
             this.CountOfPeople = countOfPeople;
             this.Comments = comments;
+            this.RequestEdited = requestEdited;
         }
 
         //ToString()

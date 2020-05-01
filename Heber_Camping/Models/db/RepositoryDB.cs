@@ -8,34 +8,13 @@ using System.Data.Common;
 
 namespace Heber_Camping.Models.db
 {
-    public class RepositoryDB : IRepositoryDB
+    public class RepositoryDB : DbBase, IRepositoryDB
     {
-        private string _connectionString = "Server=localhost;Database=db_auftrag;Uid=root;Pwd=formel1;";
-        private MySqlConnection _connection;
-
-        public void Open()
-        {
-            if (this._connection == null)
-            {
-                this._connection = new MySqlConnection(this._connectionString);
-            }
-            if (this._connection.State != ConnectionState.Open)
-            {
-                this._connection.Open();
-            }
-        }
-
-        public void Close()
-        {
-            if ((this._connection != null) && (this._connection.State != ConnectionState.Closed))
-            {
-                this._connection.Close();
-            }
-        }
-
+        
+ 
         public bool Insert(Request request)
         {
- 
+
             if (request == null)
             {
                 return false;
@@ -43,7 +22,7 @@ namespace Heber_Camping.Models.db
 
             DbCommand cmdInsert = this._connection.CreateCommand();
 
-            cmdInsert.CommandText = "INSERT INTO requests VALUES(null,@firstname,@lastname,@email,@telnum,@dateArrival,@dateDeparture,@countOfPeople,@comments)";
+            cmdInsert.CommandText = "INSERT INTO requests VALUES(null,@firstname,@lastname,@email,@telnum,@dateArrival,@dateDeparture,@countOfPeople,@comments,@RequestEdited)";
 
             // Parameter erzeugt
             DbParameter paramFirstname = cmdInsert.CreateParameter();
@@ -86,6 +65,11 @@ namespace Heber_Camping.Models.db
             paramComments.Value = request.Comments;
             paramComments.DbType = DbType.String;
 
+            DbParameter paramRequestEdited = cmdInsert.CreateParameter();
+            paramRequestEdited.ParameterName = "requestEdited";
+            paramRequestEdited.Value = false;
+            paramRequestEdited.DbType = DbType.Boolean;
+
             cmdInsert.Parameters.Add(paramFirstname);
             cmdInsert.Parameters.Add(paramLastname);
             cmdInsert.Parameters.Add(paramEmail);
@@ -94,9 +78,86 @@ namespace Heber_Camping.Models.db
             cmdInsert.Parameters.Add(paramDateDeparture);
             cmdInsert.Parameters.Add(paramCountPeople);
             cmdInsert.Parameters.Add(paramComments);
+            cmdInsert.Parameters.Add(paramRequestEdited);
 
             return cmdInsert.ExecuteNonQuery() == 1;
         }
+
+        public List<Request> GetRequests()
+        {
+            List<Request> requests = new List<Request>();
+
+            DbCommand cmdGetAll = _connection.CreateCommand();
+            cmdGetAll.CommandText = "select * from requests ORDER BY DateArrival ASC";
+
+            using (DbDataReader reader = cmdGetAll.ExecuteReader())
+            {
+                if (!reader.HasRows)
+                {
+                    return null;
+                }
+
+                reader.Read();
+                requests.Add(new Request
+                {
+                    Id = Convert.ToInt32(reader["id"]),
+                    Firstname = Convert.ToString(reader["firstname"]),
+                    Lastname = Convert.ToString(reader["lastname"]),
+                    Email = Convert.ToString(reader["email"]),
+                    Telnum = Convert.ToString(reader["telnum"]),
+                    DateArrival = Convert.ToDateTime(reader["dateArrival"]),
+                    DateDeparture = Convert.ToDateTime(reader["dateDeparture"]),
+                    CountOfPeople = Convert.ToInt32(reader["countOfPeople"]),
+                    Comments = Convert.ToString(reader["comments"]),
+                    RequestEdited = Convert.ToBoolean(reader["requestEdited"])
+                });
+
+            }
+
+            
+
+            return requests;
+
+        }
+
+        public bool Edit(int id)
+        {
+            DbCommand cmdSetEdit = _connection.CreateCommand();
+            cmdSetEdit.CommandText = "UPDATE requests set RequestEdited = @Edit where id = @id ";
+
+            DbParameter paramId = cmdSetEdit.CreateParameter();
+            paramId.ParameterName = "id";
+            paramId.Value = id;
+            paramId.DbType = DbType.Int32;
+
+            DbParameter paramEdit = cmdSetEdit.CreateParameter();
+            paramEdit.ParameterName = "Edit";
+            paramEdit.Value = true;
+            paramEdit.DbType = DbType.Boolean;
+
+            cmdSetEdit.Parameters.Add(paramId);
+            cmdSetEdit.Parameters.Add(paramEdit);
+
+            return cmdSetEdit.ExecuteNonQuery() == 1;
+
+        }
+
+        public bool Delete(int id)
+        {
+            DbCommand cmdDelete = _connection.CreateCommand();
+            cmdDelete.CommandText = "DELETE from requests where id = @id ";
+
+            DbParameter paramId = cmdDelete.CreateParameter();
+            paramId.ParameterName = "id";
+            paramId.Value = id;
+            paramId.DbType = DbType.Int32;
+
+            cmdDelete.Parameters.Add(paramId);
+
+            return cmdDelete.ExecuteNonQuery() == 1;
+
+        }
+
 
     }
 }
